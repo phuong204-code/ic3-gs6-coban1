@@ -1,0 +1,61 @@
+<!doctype html>
+<html lang="vi">
+<head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="theme-color" content="#0b1020">
+<meta name="description" content="IC3 GS6 Adventure - trò chơi phiêu lưu tin học tương tác">
+<title>IC3 GS6 Adventure — Treasure Edition</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700;800;900&family=Press+Start+2P&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="styles.css">
+</head>
+<body>
+<div class="shell">
+<header class="topbar">
+<a class="brand" href="#" id="brandHome"><span class="brand-mark">IC3</span><span>GS6 <b>ADVENTURE</b><small>CHALLENGE EDITION</small></span></a>
+<nav><button data-view="world" class="nav-link active">Bản đồ</button><button data-view="ranking" class="nav-link">Bảng xếp hạng</button><button data-view="guide" class="nav-link">Hướng dẫn</button><button id="teacherEntry" class="nav-link">👩‍🏫 Giáo viên</button></nav>
+<div class="player-chip"><span>🧑‍🚀</span><b id="playerLabel">Nhà thám hiểm</b><button id="logoutButton" class="btn ghost logout-btn">Đăng xuất</button></div>
+</header>
+<main>
+<section id="welcomeView" class="welcome-view">
+<div class="welcome-copy"><p class="eyebrow">LEARN · PLAY · LEVEL UP</p><h1>Trở thành<br><span>Master kỹ thuật số</span></h1><p>Khám phá 4 thế giới 2D, vượt mê cung, lắp ráp máy tính và chinh phục 21 cửa ải.</p>
+<div class="form-grid"><label>Tên hiển thị<input id="playerName" maxlength="30" placeholder="Nguyễn Văn An"></label><label>Lớp<input id="playerClass" maxlength="20" placeholder="6.2 hoặc 6A2"></label><button id="startAdventure" class="btn primary">Bắt đầu hành trình →</button></div>
+<p class="muted tiny">Tiến trình được lưu trên trình duyệt này. Bảng xếp hạng toàn lớp cần kết nối Google Sheets.</p></div>
+<div class="hero-art"><div class="planet"></div><div class="hero-chip">21 QUESTS</div><div class="hero-castle">⌘</div><div class="hero-orbit"></div><div class="hero-caption">BUILD · DEBUG · PROTECT</div></div>
+</section>
+<section id="worldView" class="view hidden">
+<div class="section-heading"><div><p class="eyebrow">CHOOSE YOUR WORLD</p><h1>Bản đồ hành trình</h1><p>Chọn một thế giới, đi theo đường mòn và vượt từng cửa ải để mở cổng tiếp theo.</p></div><div class="progress-card"><small>TỔNG TIẾN ĐỘ</small><b id="progressText">0 / 21</b><div class="progress-track"><i id="progressBar"></i></div></div></div>
+<div class="world-grid">
+<button class="world-card hardware" data-world="hardware"><span class="world-art">🖥️</span><span class="world-no">WORLD 01 · 6 QUESTS</span><strong>Hardware Kingdom</strong><small>Lắp ráp · Chẩn đoán · Tương thích</small><span class="world-progress" id="progress-hardware">0/6 hoàn thành</span></button>
+<button class="world-card software" data-world="software"><span class="world-art">💿</span><span class="world-no">WORLD 02 · 6 QUESTS</span><strong>Software City</strong><small>Phần mềm · Bản quyền · Cài đặt</small><span class="world-progress" id="progress-software">0/5 hoàn thành</span></button>
+<button class="world-card os" data-world="os"><span class="world-art">⚙️</span><span class="world-no">WORLD 03 · 6 QUESTS</span><strong>OS Fortress</strong><small>Khởi động · Quản lý · Khắc phục lỗi</small><span class="world-progress" id="progress-os">0/5 hoàn thành</span></button>
+<button class="world-card digital" data-world="digital"><span class="world-art">🛡️</span><span class="world-no">WORLD 04 · 6 QUESTS</span><strong>Digital World</strong><small>An toàn số · Mạng · Quyền riêng tư</small><span class="world-progress" id="progress-digital">0/5 hoàn thành</span></button>
+</div>
+<div class="profile-strip"><div><small>NHÀ THÁM HIỂM</small><b id="profileName">—</b><span id="profileClass">—</span></div><div><small>KINH NGHIỆM</small><b id="totalXp">0 XP</b></div><div><small>HUY HIỆU</small><b id="badgeCount">0 / 4</b></div><div><small>CẤP ĐỘ</small><b id="playerLevel">Level 1</b></div></div>
+</section>
+<section id="levelView" class="view hidden">
+<div class="section-heading"><div><p class="eyebrow" id="worldEyebrow">WORLD</p><h1 id="worldTitle">Hardware Kingdom</h1><p id="worldDescription">Khu vực thử thách.</p></div><button class="btn ghost" id="backWorld">← Bản đồ thế giới</button></div>
+<div class="mini-map-heading"><span>🧭 ĐƯỜNG VƯỢT ẢI</span><small>Chỉ mở được cửa ải tiếp theo khi hoàn thành cửa trước</small></div><div id="levelList" class="level-list mini-map"></div>
+</section>
+<section id="gameView" class="view hidden">
+<div class="game-top"><button class="btn ghost" id="backLevels">← Danh sách màn</button><div><p class="eyebrow" id="gameWorld">WORLD 01</p><h2 id="gameHeading">Nhiệm vụ</h2></div><div class="timer-box"><small>THỜI GIAN</small><b id="timer">--:--</b></div><div class="xp-box"><small>XP CÓ THỂ NHẬN</small><b id="gameXp">100</b></div></div>
+<div class="game-progress"><i id="gameProgressBar"></i></div>
+<div class="game-layout"><article class="mission-card"><div class="mission-meta"><span id="missionTag">MISSION 01</span><span class="difficulty">CHALLENGE</span></div><h3 id="missionTitle"></h3><p id="missionDescription" class="mission-description"></p><div id="gameArea" class="game-area"></div><div class="game-actions"><span id="taskCounter">Nhiệm vụ</span><button id="checkAnswer" class="btn primary">Kiểm tra kết quả</button></div><div id="feedback" class="feedback hidden" role="status"></div></article>
+<aside class="game-aside"><div class="aside-card"><b>📘 Kiến thức cần nhớ</b><p id="learningNote"></p></div><div class="aside-card"><b>🎯 Điều kiện chiến thắng</b><p id="winCondition"></p></div><div class="aside-card"><b>🧑‍🚀 Người chơi</b><p id="gamePlayer"></p><small>XP hiện tại: <b id="asideXp">0</b></small></div><div class="aside-card warning"><b>⚠️ Thử thách</b><p>Sai sẽ bị trừ điểm thưởng. Đọc kỹ dữ kiện trước khi xác nhận.</p></div></aside></div>
+</section>
+<section id="rankingView" class="view hidden"><div class="section-heading"><div><p class="eyebrow">HALL OF FAME</p><h1>Bảng xếp hạng</h1><p>Thành tích toàn lớp được đồng bộ qua Google Sheets.</p></div><span id="syncStatus" class="sync-status">● Chưa kết nối</span></div><div class="ranking-card"><div class="ranking-toolbar"><b>🏆 Top nhà thám hiểm</b><button id="refreshRanking" class="btn ghost">↻ Làm mới</button></div><div class="table-wrap"><table><thead><tr><th>Hạng</th><th>Học sinh</th><th>Lớp</th><th>XP</th><th>Màn hoàn thành</th></tr></thead><tbody id="rankingBody"><tr><td colspan="5">Chưa có dữ liệu</td></tr></tbody></table></div></div></section>
+<section id="teacherView" class="view hidden">
+<div class="section-heading"><div><p class="eyebrow">TEACHER CONTROL ROOM</p><h1>Trung tâm giáo viên</h1><p>Theo dõi kết quả, phân lớp và nhận xét tiến độ học tập.</p></div><button id="teacherRefresh" class="btn ghost">↻ Cập nhật</button></div>
+<div class="teacher-tools">
+<article class="ranking-card"><h3>📊 Tổng quan lớp học</h3><div id="teacherSummary" class="teacher-summary"></div></article>
+<article class="ranking-card"><div class="ranking-toolbar"><b>👩‍🎓 Danh sách học sinh & đánh giá tự động</b><div><button id="exportStudents" class="btn primary">Xuất CSV / Excel</button> <button id="clearRanking" class="btn danger">Xóa bảng xếp hạng</button></div></div>
+<div class="teacher-filters"><label>Lọc theo lớp <select id="teacherClassFilter"><option value="">Tất cả lớp</option></select></label></div>
+<div class="table-wrap"><table><thead><tr><th>Học sinh</th><th>Lớp</th><th>XP</th><th>Màn hoàn thành</th><th>Đánh giá</th></tr></thead><tbody id="teacherBody"><tr><td colspan="5">Chưa có dữ liệu</td></tr></tbody></table></div></article>
+<p class="muted tiny">Lưu ý: dữ liệu offline chỉ nằm trên thiết bị hiện tại. Muốn giáo viên xem kết quả của nhiều máy, cần cấu hình Google Sheets và quyền quản trị ở Apps Script.</p>
+</div></section>
+<section id="guideView" class="view hidden"><div class="section-heading"><div><p class="eyebrow">HELP CENTER</p><h1>Hướng dẫn</h1><p>Quy tắc chơi và triển khai website.</p></div></div><div class="guide-grid"><article><h3>🎮 Cách chơi</h3><p>Chọn thế giới, mở nhiệm vụ đang được mở khóa, đọc dữ kiện và thực hiện thao tác. Mỗi thế giới có bản đồ vượt ải riêng: lắp ráp, chạy mê cung, ghép thẻ, phân loại tệp và xử lý tình huống. Hoàn thành các cửa ải của thế giới để mở vùng đất tiếp theo.</p></article><article><h3>⭐ Tính điểm</h3><p>Mỗi màn tối đa 100 XP. Điểm phụ thuộc độ chính xác, số lượt thử và thời gian. Mỗi màn chỉ cộng XP một lần; chơi lại để luyện tập không cộng trùng.</p></article><article class="wide"><h3>☁️ Google Sheets & GitHub Pages</h3><p>Giữ nguyên config.js và URL Apps Script khi cập nhật. Tải toàn bộ file ở thư mục gốc lên repository GitHub Pages. Xem README.md để biết các bước triển khai.</p></article></div></section>
+</main><footer>© 2026 IC3 GS6 ADVENTURE <span>LEARN BY PLAYING · THINK LIKE A TECHNICIAN</span></footer>
+</div>
+<div id="completionModal" class="modal hidden"><div class="modal-card"><div class="modal-icon">🏆</div><p class="eyebrow">MISSION COMPLETED</p><h2 id="completionTitle">Hoàn thành!</h2><p id="completionText"></p><div class="reward-xp" id="rewardXp">+ XP</div><button id="continueButton" class="btn primary">Tiếp tục hành trình</button></div></div>
+<script src="config.js"></script><script src="app.js"></script>
+</body></html>
